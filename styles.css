@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;600&family=Space+Mono:wght@400;700&display=swap');
+
+body {
+    font-family: 'Space Mono', monospace;
+    background-color: #222831;
+    color: #EEEEEE;
+    margin: 18px;
+    padding: 20px;
+    line-height: 1.4;
+    font-size: 16px;
+}
+
+.main-container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #a2cf7dda;
+}
+
+h1, h2 {
+    font-family: 'Mulish', sans-serif;
+    color: #EEEEEE;
+    text-align: left;
+    margin: 20px 0 30px;
+    font-size: 1.5rem;
+}
+
+#log-container, .reference-table-container, #history-container {
+    background-color: #393E46;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+    border-spacing: 0;
+}
+
+th, td, tfoot td {
+    font-family: 'Space Mono', monospace;
+    padding: 0;
+    text-align: center;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border: 1px solid #222831;
+    height: 30px;
+    min-height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+#customPercentageInput {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: #EEEEEE;
+    background-color: #393E46;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0;
+    margin: 0;
+    display: block;
+}
+
+#customPercentageInput::placeholder {
+    color: #626b79;
+    opacity: 1; 
+}
+
+#customPercentageInput::-webkit-outer-spin-button,
+#customPercentageInput::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#customPercentageInput[type=number],
+input[type="number"] {
+    appearance: textfield; /* Propriedade padrão */
+    -moz-appearance: textfield; /* Propriedade específica para Firefox */
+}
+
+
+
+
+tfoot input {
+    width: 50%; 
+    background-color: #393E46; 
+    color: #EEEEEE; 
+    border: none; 
+    text-align: center;
+    outline: none; 
+    height: 30px;
+    line-height: 30px;
+    vertical-align: middle;
+}
+
+.log-table input, 
+.log-table select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: #333333;
+    color: #EEEEEE;
+    border: 1px solid #555;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+::placeholder {
+    font-family: 'Space Mono', monospace;
+    color: #ffffff;
+    opacity: 1;
+}
+
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+input:-moz-placeholder {
+    font-family: 'Space Mono', monospace;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-icon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #393E46;
+}
+
+.input-icon i {
+    padding: 12px;
+    background: #393E46;
+    color: #EEEEEE;
+    min-width: 40px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.input-icon input, 
+.input-icon select {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 12px;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 1rem;
+    appearance: none;
+}
+
+input[type="date"], select {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    padding: 12px;
+    color: #EEEEEE;
+    background-color: #393E46;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.validate-btn,
+#history-buttons button {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #FD7014;
+    border: none;
+    padding: 12px;
+    color: #EEEEEE;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+#history-buttons button#delete-last-record-btn,
+#history-buttons button#clear-history-btn {
+    background-color: #d32f2f;
+}
+
+#history-buttons button#delete-last-record-btn:hover,
+#history-buttons button#clear-history-btn:hover {
+    background-color: #f44336;
+}
+
+#history-buttons button#export-csv-btn {
+    background-color: #1976d2;
+}
+
+#history-buttons button#export-csv-btn:hover {
+    background-color: #2196f3;
+}
+
+#history-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #393E46;
+    border-radius: 8px;
+    flex-wrap: nowrap;
+}
+
+#history-buttons button {
+    flex: 1;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #FD7014;
+    border: none;
+    padding: 12px;
+    color: #EEEEEE;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.validate-btn:hover,
+#history-buttons button:hover {
+    background-color: #FF8C42;
+}
+
+@media screen and (max-width: 350px) {
+    #history-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #history-buttons button {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+footer {
+    font-family: 'Space Mono', monospace;
+    color: #EEEEEE;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+}
+
+footer a {
+    color: #FD7014;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+.reference-table-container .input-icon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #555;
+    border-radius: 5px;
+    background-color: #393E46;
+}
+
+.reference-table-container .input-icon i {
+    padding: 12px;
+    background: #393E46;
+    color: white;
+    min-width: 40px;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.reference-table-container .input-icon select {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 12px;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: none;
+}
+
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 14px;
+        margin: 18px;
+        padding: 15px;
+    }
+
+    .main-container {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 1.3rem;
+        margin: 15px 0 25px;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    th, td, tfoot td {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .input-icon i {
+        min-width: 35px;
+    }
+
+    .input-icon input, 
+    .input-icon select,
+    .validate-btn,
+    #history-buttons button {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    body {
+        font-size: 12px;
+        margin: 18px;
+        padding: 10px;
+    }
+
+    .main-container {
+        padding: 10px;
+    }
+
+    h1, h2 {
+        font-size: 1.2rem;
+        margin: 10px 0 20px;
+    }
+
+    #log-container, .reference-table-container, #history-container {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    th, td, tfoot td {
+        padding: 8px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .input-icon i {
+        min-width: 30px;
+    }
+
+    .input-icon input, 
+    .input-icon select,
+    .validate-btn,
+    #history-buttons button {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+}
+
+#customPercentageInput,
+input[type="number"],
+input[type="date"],
+select,
+.input-icon input,
+.input-icon select {
+    color: #626b79;
+}
+
+#customPercentageInput::placeholder,
+input[type="number"]::placeholder,
+input[type="date"]::placeholder,
+select::placeholder,
+.input-icon input::placeholder,
+.input-icon select::placeholder {
+    color: #626b79;
+    opacity: 1;
+}
+
+.reference-table-container .input-icon select {
+    color: #626b79;
+}
+
+.reference-table-container .input-icon select::placeholder {
+    color: #626b79;
+    opacity: 1;
+}
+

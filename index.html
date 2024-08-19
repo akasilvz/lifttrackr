@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LiftTrackr</title>
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    </head>
+    <body>
+        <div id="log-container">
+            <h2>💪 Log n' Pump</h2>
+            <div id="log-body"></div>
+        </div>
+
+        <div class="reference-table-container">
+            <h2>🧮 Percentage Reference</h2>
+            <div class="input-icon">
+                <i class="fas fa-dumbbell"></i>
+                <select id="exerciseSelect">
+                    <option value="" disabled selected>Exercise</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Percentage</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody id="referencePercentages"></tbody>
+                <tfoot>
+                    <tr>
+                        <td>
+                            <input type="number" id="customPercentageInput" placeholder="Custom %" min="0" max="100" step="1">
+                        </td>
+                        <td id="customWeightOutput">-</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div id="history-container">
+            <h2>📜 Exercise History</h2>
+            <table class="history-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Exercise</th>
+                        <th>Weight</th>
+                    </tr>
+                </thead>
+                <tbody id="history-body"></tbody>
+            </table>
+        </div>
+
+        <div id="history-buttons">
+            <button id="delete-last-record-btn">Delete Last Row</button>
+            <button id="clear-history-btn">Delete All Rows</button>
+            <button id="export-csv-btn">Export CSV</button>
+        </div>
+
+        <script type="module" src="script.js"></script>
+
+        <footer>
+            <p>made with a lot of 💦 by <a href="https://www.linkedin.com/in/ijoao/" target="_blank">me</a> & <a href="https://chatgpt.com/" target="_blank">my buddy</a></p>
+        </footer>
+    </body>
+</html>

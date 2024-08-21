@@ -5,15 +5,15 @@ body {
     background-color: #222831;
     color: #EEEEEE;
     margin: 18px;
-    padding: 10px; /* Ajustado para ser consistente */
-    line-height: 1.4;
-    font-size: 11px;
+    padding: 10px;
+    line-height: 1.3;
+    font-size: 13px;
 }
 
 .main-container {
     max-width: 480px;
     margin: 0 auto;
-    padding: 15px; /* Ajustado para ser consistente */
+    padding: 15px;
     background-color: #a2cf7dda;
 }
 
@@ -21,23 +21,25 @@ h1, h2 {
     font-family: 'Mulish', sans-serif;
     color: #EEEEEE;
     text-align: left;
-    margin: 15px 0 25px; /* Ajustado para ser consistente */
-    font-size: 20px;
+    margin: 15px 0 25px;
+    font-size: 1.5em;
 }
 
-#log-container, .reference-table-container, #history-container {
+#log-container,
+.reference-table-container,
+#history-container {
     background-color: #393E46;
     border-radius: 8px;
-    padding: 15px; /* Ajustado para ser consistente */
+    padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px; /* Ajustado para ser consistente */
+    margin-bottom: 20px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 12px;
+    font-size: 1em;
     border-spacing: 0;
 }
 
@@ -49,13 +51,25 @@ th, td, tfoot td {
     color: #EEEEEE;
     border: 1px solid #222831;
     height: 35px;
-    line-height: 30px; /* Centraliza verticalmente o texto */
+    line-height: 30px;
     vertical-align: middle;
+}
+
+#customPercentageInput,
+input[type="number"],
+input[type="date"],
+select,
+.input-icon input,
+.input-icon select {
+    color: #EEEEEE;
+    font-size: 1em;
+    font-family: 'Space Mono', monospace;
+    background-color: #393E46;
 }
 
 #customPercentageInput {
     font-family: 'Space Mono', monospace;
-    color: #FFFFFF !important; /* Força a cor do texto para branco */
+    color: #FFFFFF !important;
     background-color: #393E46;
     text-align: center;
     height: 30px;
@@ -68,13 +82,28 @@ th, td, tfoot td {
     display: block;
 }
 
-#customPercentageInput::placeholder {
-    color: #FFFFFF; /* Altera a cor do placeholder para branco */
-    opacity: 0.7; /* Opcional: Ajusta a opacidade do placeholder */
+/* Placeholder styling */
+input[type="date"]::placeholder,
+input[type="number"]::placeholder,
+select::placeholder {
+    color: #dad2d2 !important; 
+    font-family: 'Space Mono', monospace;
+}
+
+.input-icon input,
+.input-icon select {
+    color: #dad2d2 !important; 
+    background-color: #393E46;
+    font-family: 'Space Mono', monospace;
+    border: none;
+    outline: none;
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 #customPercentageInput:focus {
-    color: #FFFFFF !important; /* Garante que a cor do texto permaneça branca ao focar */
+    color: #FFFFFF !important;
 }
 
 #customPercentageInput::-webkit-outer-spin-button,
@@ -87,23 +116,23 @@ input[type="number"]::-webkit-inner-spin-button {
 
 #customPercentageInput[type=number],
 input[type="number"] {
-    appearance: textfield; /* Propriedade padrão */
-    -moz-appearance: textfield; /* Propriedade específica para Firefox */
+    appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 tfoot input {
-    width: 50%; 
-    background-color: #393E46; 
-    color: #EEEEEE; 
-    border: none; 
+    width: 50%;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border: none;
     text-align: center;
-    outline: none; 
+    outline: none;
     height: 30px;
     line-height: 30px;
     vertical-align: middle;
 }
 
-.log-table input, 
+.log-table input,
 .log-table select {
     width: 100%;
     padding: 8px;
@@ -113,24 +142,7 @@ tfoot input {
     border: 1px solid #555;
     border-radius: 5px;
     box-sizing: border-box;
-    font-size: 1rem;
-}
-
-::placeholder {
-    font-family: 'Space Mono', monospace;
-    color: #ffffff;
-    opacity: 1;
-}
-
-input::-webkit-input-placeholder,
-input::-moz-placeholder,
-input:-ms-input-placeholder,
-input:-moz-placeholder {
-    font-family: 'Space Mono', monospace;
-}
-
-select::-ms-expand {
-    display: none;
+    font-size: 1em;
 }
 
 .input-group {
@@ -156,7 +168,7 @@ select::-ms-expand {
     border-bottom-left-radius: 5px;
 }
 
-.input-icon input, 
+.input-icon input,
 .input-icon select {
     border: none;
     outline: none;
@@ -166,25 +178,15 @@ select::-ms-expand {
     color: #EEEEEE;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    font-size: 1rem;
+    font-size: 1em;
     appearance: none;
-}
-
-input[type="date"], select {
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    padding: 12px;
-    color: #EEEEEE;
-    background-color: #393E46;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
 .validate-btn,
 #history-buttons button {
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
+    font-size: 1em;
     cursor: pointer;
     background-color: #FD7014;
     border: none;
@@ -197,8 +199,32 @@ input[type="date"], select {
 }
 
 .validate-btn.incomplete {
-    background-color: #d32f2f; /* Vermelho */
+    background-color: #d32f2f;
     color: #ffffff;
+}
+
+#history-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #393E46;
+    border-radius: 8px;
+    flex-wrap: nowrap;
+}
+
+#history-buttons button {
+    flex: 1;
+    font-size: 1em;
+    cursor: pointer;
+    background-color: #FD7014;
+    border: none;
+    padding: 12px;
+    color: #EEEEEE;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
 }
 
 #history-buttons button#delete-last-record-btn,
@@ -219,53 +245,9 @@ input[type="date"], select {
     background-color: #2196f3;
 }
 
-#history-buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #393E46;
-    border-radius: 8px;
-    flex-wrap: nowrap;
-
-}
-
-#history-buttons button {
-    flex: 1;
-    font-size: 12px;
-    cursor: pointer;
-    background-color: #FD7014;
-    border: none;
-    padding: 12px;
-    color: #EEEEEE;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
-
 .validate-btn:hover,
 #history-buttons button:hover {
     background-color: #FF8C42;
-}
-
-footer {
-    font-family: 'Space Mono', monospace;
-    color: #EEEEEE;
-    text-align: center;
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 8px;
-    font-size: 0.7rem;
-}
-
-footer a {
-    color: #FD7014;
-    text-decoration: none;
-}
-
-footer a:hover {
-    text-decoration: underline;
 }
 
 .reference-table-container .input-icon {
@@ -302,30 +284,25 @@ footer a:hover {
     background-image: none;
 }
 
-#customPercentageInput,
-input[type="number"],
-input[type="date"],
-select,
-.input-icon input,
-.input-icon select {
-    color: #626b79;
+select::-ms-expand {
+    display: none;
 }
 
-#customPercentageInput::placeholder,
-input[type="number"]::placeholder,
-input[type="date"]::placeholder,
-select::placeholder,
-.input-icon input::placeholder,
-.input-icon select::placeholder {
-    color: #626b79;
-    opacity: 1;
+footer {
+    font-family: 'Space Mono', monospace;
+    color: #EEEEEE;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 8px;
+    font-size: 1em;
 }
 
-.reference-table-container .input-icon select {
-    color: #626b79;
+footer a {
+    color: #FD7014;
+    text-decoration: none;
 }
 
-.reference-table-container .input-icon select::placeholder {
-    color: #626b79;
-    opacity: 1;
+footer a:hover {
+    text-decoration: underline;
 }

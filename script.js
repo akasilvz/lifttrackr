@@ -60,10 +60,8 @@ function addRow() {
 
     const dateInput = logBody.querySelector('#dateInput');
     const calendarIcon = logBody.querySelector('.fa-calendar-alt');
-
-    // Abrir o calendário ao clicar no ícone
     calendarIcon.addEventListener('click', function() {
-        dateInput.showPicker(); // Abre o calendário
+        dateInput.showPicker();
     });
 }
 
@@ -145,7 +143,6 @@ function updateReferenceTable() {
         `;
     }).join('');
 
-    // Adicionar linha para % customizada
     const customPercentageInput = document.getElementById('customPercentageInput');
     const customWeightOutput = document.getElementById('customWeightOutput');
 
@@ -164,15 +161,14 @@ function checkRowCompletion(inputs) {
     const validateBtn = document.querySelector('.validate-btn');
     if (Array.from(inputs).every(input => input.value)) {
         validateBtn.disabled = false;
-        validateBtn.style.backgroundColor = ''; // Restaura a cor original
-        validateBtn.textContent = 'Submit'; // Restaura o texto original
+        validateBtn.style.backgroundColor = '';
+        validateBtn.textContent = 'Submit';
     } else {
         validateBtn.disabled = true;
-        validateBtn.style.backgroundColor = '#d32f2f'; // Muda para vermelho
-        validateBtn.textContent = 'Incomplete Fields 😰'; // Altera o texto
+        validateBtn.style.backgroundColor = '#d32f2f';
+        validateBtn.textContent = 'Incomplete Fields 😰';
     }
 }
-
 
 document.addEventListener('DOMContentLoaded', () => {
     const exerciseSelect = document.getElementById('exerciseSelect');
@@ -182,7 +178,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateReferenceTable();
     exerciseSelect.addEventListener('change', updateReferenceTable);
 
-    // Smooth scroll implementation
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();

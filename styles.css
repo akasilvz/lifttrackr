@@ -5,15 +5,15 @@ body {
     background-color: #222831;
     color: #EEEEEE;
     margin: 18px;
-    padding: 20px;
+    padding: 10px; /* Ajustado para ser consistente */
     line-height: 1.4;
-    font-size: 16px;
+    font-size: 11px;
 }
 
 .main-container {
     max-width: 480px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 15px; /* Ajustado para ser consistente */
     background-color: #a2cf7dda;
 }
 
@@ -21,43 +21,41 @@ h1, h2 {
     font-family: 'Mulish', sans-serif;
     color: #EEEEEE;
     text-align: left;
-    margin: 20px 0 30px;
-    font-size: 1.5rem;
+    margin: 15px 0 25px; /* Ajustado para ser consistente */
+    font-size: 20px;
 }
 
 #log-container, .reference-table-container, #history-container {
     background-color: #393E46;
     border-radius: 8px;
-    padding: 20px;
+    padding: 15px; /* Ajustado para ser consistente */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+    margin-bottom: 20px; /* Ajustado para ser consistente */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
-    font-size: 0.9rem;
+    font-size: 12px;
     border-spacing: 0;
 }
 
 th, td, tfoot td {
     font-family: 'Space Mono', monospace;
-    padding: 0;
+    padding: 8px;
     text-align: center;
     background-color: #393E46;
     color: #EEEEEE;
     border: 1px solid #222831;
-    height: 30px;
-    min-height: 30px;
-    line-height: 30px;
+    height: 35px;
+    line-height: 30px; /* Centraliza verticalmente o texto */
     vertical-align: middle;
 }
 
 #customPercentageInput {
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
-    color: #EEEEEE;
+    color: #FFFFFF !important; /* Força a cor do texto para branco */
     background-color: #393E46;
     text-align: center;
     height: 30px;
@@ -71,8 +69,12 @@ th, td, tfoot td {
 }
 
 #customPercentageInput::placeholder {
-    color: #626b79;
-    opacity: 1; 
+    color: #FFFFFF; /* Altera a cor do placeholder para branco */
+    opacity: 0.7; /* Opcional: Ajusta a opacidade do placeholder */
+}
+
+#customPercentageInput:focus {
+    color: #FFFFFF !important; /* Garante que a cor do texto permaneça branca ao focar */
 }
 
 #customPercentageInput::-webkit-outer-spin-button,
@@ -88,9 +90,6 @@ input[type="number"] {
     appearance: textfield; /* Propriedade padrão */
     -moz-appearance: textfield; /* Propriedade específica para Firefox */
 }
-
-
-
 
 tfoot input {
     width: 50%; 
@@ -192,9 +191,14 @@ input[type="date"], select {
     padding: 12px;
     color: #EEEEEE;
     border-radius: 5px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     width: 100%;
     text-align: center;
+}
+
+.validate-btn.incomplete {
+    background-color: #d32f2f; /* Vermelho */
+    color: #ffffff;
 }
 
 #history-buttons button#delete-last-record-btn,
@@ -224,11 +228,12 @@ input[type="date"], select {
     background-color: #393E46;
     border-radius: 8px;
     flex-wrap: nowrap;
+
 }
 
 #history-buttons button {
     flex: 1;
-    font-size: 1rem;
+    font-size: 12px;
     cursor: pointer;
     background-color: #FD7014;
     border: none;
@@ -242,18 +247,6 @@ input[type="date"], select {
 .validate-btn:hover,
 #history-buttons button:hover {
     background-color: #FF8C42;
-}
-
-@media screen and (max-width: 350px) {
-    #history-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    #history-buttons button {
-        margin-bottom: 10px;
-        width: 100%;
-    }
 }
 
 footer {
@@ -309,88 +302,6 @@ footer a:hover {
     background-image: none;
 }
 
-@media screen and (max-width: 768px) {
-    body {
-        font-size: 14px;
-        margin: 18px;
-        padding: 15px;
-    }
-
-    .main-container {
-        padding: 15px;
-    }
-
-    h1, h2 {
-        font-size: 1.3rem;
-        margin: 15px 0 25px;
-    }
-
-    table {
-        font-size: 0.8rem;
-    }
-
-    th, td, tfoot td {
-        height: 30px;
-        line-height: 30px;
-    }
-
-    .input-icon i {
-        min-width: 35px;
-    }
-
-    .input-icon input, 
-    .input-icon select,
-    .validate-btn,
-    #history-buttons button {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    body {
-        font-size: 12px;
-        margin: 18px;
-        padding: 10px;
-    }
-
-    .main-container {
-        padding: 10px;
-    }
-
-    h1, h2 {
-        font-size: 1.2rem;
-        margin: 10px 0 20px;
-    }
-
-    #log-container, .reference-table-container, #history-container {
-        padding: 15px;
-        margin-bottom: 20px;
-    }
-
-    table {
-        font-size: 0.75rem;
-    }
-
-    th, td, tfoot td {
-        padding: 8px;
-        height: 30px;
-        line-height: 30px;
-    }
-
-    .input-icon i {
-        min-width: 30px;
-    }
-
-    .input-icon input, 
-    .input-icon select,
-    .validate-btn,
-    #history-buttons button {
-        font-size: 0.85rem;
-        padding: 8px;
-    }
-}
-
 #customPercentageInput,
 input[type="number"],
 input[type="date"],
@@ -418,4 +329,3 @@ select::placeholder,
     color: #626b79;
     opacity: 1;
 }
-

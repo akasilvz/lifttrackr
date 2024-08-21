@@ -161,8 +161,18 @@ function updateReferenceTable() {
 }
 
 function checkRowCompletion(inputs) {
-    document.querySelector('.validate-btn').disabled = !Array.from(inputs).every(input => input.value);
+    const validateBtn = document.querySelector('.validate-btn');
+    if (Array.from(inputs).every(input => input.value)) {
+        validateBtn.disabled = false;
+        validateBtn.style.backgroundColor = ''; // Restaura a cor original
+        validateBtn.textContent = 'Submit'; // Restaura o texto original
+    } else {
+        validateBtn.disabled = true;
+        validateBtn.style.backgroundColor = '#d32f2f'; // Muda para vermelho
+        validateBtn.textContent = 'Incomplete Fields 😰'; // Altera o texto
+    }
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const exerciseSelect = document.getElementById('exerciseSelect');

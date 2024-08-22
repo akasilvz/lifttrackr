@@ -137,7 +137,7 @@ function updateReferenceTable() {
         const weightAtPercentage = maxWeight * (percentage / 100);
         return `
             <tr>
-                <td>${percentage}%</td>
+                <td>${percentage}</td>
                 <td>${weightAtPercentage.toFixed(1)} kg</td>
             </tr>
         `;
@@ -146,16 +146,23 @@ function updateReferenceTable() {
     const customPercentageInput = document.getElementById('customPercentageInput');
     const customWeightOutput = document.getElementById('customWeightOutput');
 
-    customPercentageInput.addEventListener('input', function() {
-        const customPercentage = this.value;
+    function updateCustomWeight() {
+        const customPercentage = customPercentageInput.value;
         if (customPercentage > 0 && customPercentage <= 100) {
             const weightAtCustomPercentage = maxWeight * (customPercentage / 100);
             customWeightOutput.textContent = `${weightAtCustomPercentage.toFixed(1)} kg`;
         } else {
             customWeightOutput.textContent = '-';
         }
-    });
+    }
+
+    customPercentageInput.removeEventListener('input', updateCustomWeight);
+    customPercentageInput.addEventListener('input', updateCustomWeight); 
+    document.getElementById('exerciseSelect').addEventListener('change', updateCustomWeight); 
+
+    updateCustomWeight(); 
 }
+
 
 function checkRowCompletion(inputs) {
     const validateBtn = document.querySelector('.validate-btn');

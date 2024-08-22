@@ -17,6 +17,13 @@ body {
     background-color: #a2cf7dda;
 }
 
+/* Estilo específico para telas maiores (desktops) */
+@media (min-width: 768px) {
+    .main-container {
+        max-width: 750px; /* Largura maior para desktops */
+    }
+}
+
 h1, h2 {
     font-family: 'Mulish', sans-serif;
     color: #EEEEEE;
@@ -305,4 +312,9 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
 }

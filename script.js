@@ -19,12 +19,13 @@ function addRow() {
     const today = new Date().toISOString().split('T')[0];
 
     logBody.innerHTML = `
-        <div class="input-group">
-            <div class="input-icon">
-                <i class="fas fa-calendar-alt"></i>
-                <input type="date" id="dateInput" placeholder="Date" max="${today}" required>
-            </div>
-        </div>
+<div class="input-group">
+    <div class="input-icon">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="date" id="dateInput" placeholder="Date" max="${today}" required>
+    </div>
+</div>
+
         <div class="input-group">
             <div class="input-icon">
                 <i class="fas fa-dumbbell"></i>

@@ -36,8 +36,8 @@ function addRow() {
         </div>
         <div class="input-group">
             <div class="input-icon">
-                <i class="fas fa-weight"></i>
-                <input type="number" placeholder="Weight" min="0" step="0.1" required>
+                <i class="fas fa-medal"></i>
+                <input type="number" placeholder="PR Weight" min="0" step="0.1" required>
             </div>
         </div>
         <div class="input-group">
@@ -105,7 +105,7 @@ function updateHistoryTable() {
     historyContainer.innerHTML = exerciseData.length === 0 ? 
         '<p style="text-align: center; color: #f0f0f0;">No data to show... 😔</p>' :
         `
-            <h2>📜 Exercise History</h2>
+            <h2>📜 Personal Record History</h2>
             <table class="history-table">
                 <thead>
                     <tr>

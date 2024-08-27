@@ -16,33 +16,32 @@ function populateExerciseOptions(selectElement, onlyRecorded = false) {
 
 function addRow() {
     const logBody = document.getElementById('log-body');
-    const today = new Date().toISOString().split('T')[0];
 
     logBody.innerHTML = `
-<div class="input-group">
-    <div class="input-icon">
-        <i class="fas fa-calendar-alt"></i>
-        <input type="text" id="dateInput" placeholder="Date" max="${today}" required>
+    <div class="input-group">
+        <div class="input-icon">
+            <i class="fas fa-calendar-alt"></i>
+            <input type="text" id="dateInput" placeholder="Date" maxlength="10" required>
+        </div>
     </div>
-</div>
 
-        <div class="input-group">
-            <div class="input-icon">
-                <i class="fas fa-dumbbell"></i>
-                <select required>
-                    <option value="" disabled selected>Exercise</option>
-                </select>
-            </div>
+    <div class="input-group">
+        <div class="input-icon">
+            <i class="fas fa-dumbbell"></i>
+            <select required>
+                <option value="" disabled selected>Exercise</option>
+            </select>
         </div>
-        <div class="input-group">
-            <div class="input-icon">
-                <i class="fas fa-medal"></i>
-                <input type="number" placeholder="PR Weight" min="0" step="0.1" required>
-            </div>
+    </div>
+    <div class="input-group">
+        <div class="input-icon">
+            <i class="fas fa-medal"></i>
+            <input type="number" placeholder="PR Weight" min="0" step="0.1" required>
         </div>
-        <div class="input-group">
-            <button class="validate-btn" disabled>Submit</button>
-        </div>
+    </div>
+    <div class="input-group">
+        <button class="validate-btn" disabled>Submit</button>
+    </div>
     `;
 
     const selectElement = logBody.querySelector('select');
@@ -60,37 +59,64 @@ function addRow() {
     validateBtn.addEventListener('click', validateRow);
 
     const dateInput = logBody.querySelector('#dateInput');
-    const calendarIcon = logBody.querySelector('.fa-calendar-alt');
-    calendarIcon.addEventListener('click', function() {
-        dateInput.showPicker();
-    });
-
-    // New JavaScript for placeholder handling
-    dateInput.addEventListener('focus', () => {
-        dateInput.type = 'date';
-    });
-
-    dateInput.addEventListener('blur', () => {
-        if (dateInput.value === "") {
-            dateInput.type = 'text';
-            dateInput.placeholder = 'Date';
+    dateInput.addEventListener('focus', function() {
+        if (this.placeholder === 'Date') {
+            this.placeholder = 'dd/mm/aaaa';
         }
     });
+    dateInput.addEventListener('blur', function() {
+        if (this.value === '') {
+            this.placeholder = 'Date';
+        }
+    });
+    dateInput.addEventListener('input', formatDateInput);
+}
+
+function formatDateInput(event) {
+    let input = event.target.value;
+    input = input.replace(/\D/g, ''); // Remove caracteres não numéricos
+
+    // Inicializa a máscara e os placeholders
+    let day = 'dd', month = 'mm', year = 'aaaa';
+    
+    if (input.length >= 1) day = input.substring(0, 2).padEnd(2, 'd');
+    if (input.length >= 3) month = input.substring(2, 4).padEnd(2, 'm');
+    if (input.length >= 5) year = input.substring(4, 8).padEnd(4, 'a');
+
+    // Constrói a máscara progressivamente
+    let formattedDate = day + '/' + month + '/' + year;
+
+    // Limita o comprimento da entrada ao necessário
+    formattedDate = formattedDate.substring(0, 10);
+
+    // Atualiza o valor do campo de entrada
+    event.target.value = formattedDate;
 }
 
 function validateRow() {
     const logBody = document.getElementById('log-body');
-    const dateInput = logBody.querySelector('input[type="date"]');
+    const dateInput = logBody.querySelector('#dateInput');
     const selectInput = logBody.querySelector('select');
     const weightInput = logBody.querySelector('input[type="number"]');
 
-    if (!dateInput.value || !selectInput.value || !weightInput.value) {
-        alert("Please fill all fields");
+    // Verificação da data no formato DD/MM/AAAA
+    const datePattern = /^\d{2}\/\d{2}\/\d{4}$/;
+    if (!dateInput.value.match(datePattern)) {
+        alert("Data inválida! Use o formato DD/MM/AAAA.");
+        return;
+    }
+
+    // Converter data para AAAA-MM-DD para armazenamento
+    const [day, month, year] = dateInput.value.split('/');
+    const formattedDate = `${year}-${month}-${day}`;
+
+    if (!selectInput.value || !weightInput.value) {
+        alert("Por favor, preencha todos os campos.");
         return;
     }
 
     exerciseData.push({
-        date: formatDate(dateInput.value),
+        date: `${day}/${month}/${year}`, // Armazenar no formato desejado
         exercise: selectInput.value,
         weight: parseFloat(weightInput.value)
     });
@@ -105,11 +131,6 @@ function validateRow() {
     logBody.querySelector('.validate-btn').disabled = true;
 
     addRow();
-}
-
-function formatDate(dateString) {
-    const [year, month, day] = dateString.split('-');
-    return `${day}/${month}/${year}`;
 }
 
 function updateHistoryTable() {
@@ -175,7 +196,6 @@ function updateReferenceTable() {
 
     updateCustomWeight(); 
 }
-
 
 function checkRowCompletion(inputs) {
     const validateBtn = document.querySelector('.validate-btn');

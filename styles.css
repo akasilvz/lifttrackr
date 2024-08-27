@@ -342,11 +342,6 @@ footer a:hover {
     text-decoration: underline;
 }
 
-/* Remover indicador do calendário em input[type="date"] para consistência */
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
-}
 
 /* Ajustar altura dos inputs para consistência visual */
 .input-icon input,

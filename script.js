@@ -53,40 +53,51 @@ function addRow() {
 
 function formatDateInput(event) {
     const input = event.target;
-    let value = input.value.replace(/\D/g, ''); 
+    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
     let formattedValue = '';
 
-    if (value.length > 0) {
+    // Verifica se o campo está vazio e permite reset
+    if (value.length === 0) {
+        input.value = '';
+        return;
+    }
+
+    // Formatação condicional baseada na quantidade de dígitos inseridos
+    if (value.length <= 2) {
+        // Somente dia foi inserido
+        formattedValue = value;
+    } else if (value.length <= 4) {
+        // Dia e mês foram inseridos
         let day = value.substring(0, 2);
-        if (parseInt(day) > 31) day = '31';
-        formattedValue = day;
-    }
-
-    if (value.length > 2) {
         let month = value.substring(2, 4);
-        if (parseInt(month) > 12) month = '12';
-        formattedValue += '/' + month;
-    }
 
-    if (value.length > 4) {
-        const year = value.substring(4, 8);
+        // Limita valores máximos de dia e mês
+        if (parseInt(day) > 31) day = '31';
+        if (parseInt(month) > 12) month = '12';
+
+        formattedValue = day + '/' + month;
+    } else {
+        // Dia, mês e ano foram inseridos
+        let day = value.substring(0, 2);
+        let month = value.substring(2, 4);
+        let year = value.substring(4, 8);
+
+        // Limita valores máximos de dia e mês
+        if (parseInt(day) > 31) day = '31';
+        if (parseInt(month) > 12) month = '12';
+
+        // Verifica se a data está no futuro
         const today = new Date();
-        const inputDate = new Date(`${value.substring(4, 8)}-${value.substring(2, 4)}-${value.substring(0, 2)}`);
-        
-        // Limita a data ao dia atual
+        const inputDate = new Date(`${year}-${month}-${day}`);
+
         if (inputDate > today) {
             const todayDay = String(today.getDate()).padStart(2, '0');
             const todayMonth = String(today.getMonth() + 1).padStart(2, '0');
             const todayYear = today.getFullYear();
             formattedValue = `${todayDay}/${todayMonth}/${todayYear}`;
         } else {
-            formattedValue += '/' + year;
+            formattedValue = day + '/' + month + '/' + year;
         }
-    }
-
-    // Adiciona placeholders para os campos restantes
-    if (formattedValue.length < 10) {
-        formattedValue += 'd/m/aaaa'.substring(formattedValue.length);
     }
 
     input.value = formattedValue;

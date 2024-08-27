@@ -108,11 +108,34 @@ select,
     display: block;
 }
 
+input::placeholder,
 input[type="date"]::placeholder,
 input[type="number"]::placeholder,
 select::placeholder {
-    color: #dad2d2 !important; 
-    font-family: 'Inter', sans-serif;
+    color: #dad2d2; 
+    opacity: 1; 
+}
+
+/* Cross-browser compatibility for placeholders */
+input[type="date"]::-webkit-input-placeholder,
+input::-webkit-input-placeholder {
+    color: #dad2d2;
+}
+
+input[type="date"]::-moz-placeholder,
+input::-moz-placeholder {
+    color: #dad2d2;
+    opacity: 1;
+}
+
+input[type="date"]:-ms-input-placeholder,
+input:-ms-input-placeholder {
+    color: #dad2d2;
+}
+
+input[type="date"]::-ms-input-placeholder,
+input::-ms-input-placeholder {
+    color: #dad2d2;
 }
 
 .input-icon input,
@@ -327,3 +350,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
 }
 
+.input-icon input,
+.input-icon select,
+#history-buttons button {
+    height: 40px; 
+    padding: 0 12px; 
+    font-size: 1em; 
+    line-height: 1.5;
+    box-sizing: border-box; 
+}
+
+input[type="date"] {
+    height: 40px; 
+    padding: 0 12px;
+    box-sizing: border-box;
+}

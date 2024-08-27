@@ -22,7 +22,7 @@ function addRow() {
 <div class="input-group">
     <div class="input-icon">
         <i class="fas fa-calendar-alt"></i>
-        <input type="date" id="dateInput" placeholder="Date" max="${today}" required>
+        <input type="text" id="dateInput" placeholder="Date" max="${today}" required>
     </div>
 </div>
 
@@ -63,6 +63,18 @@ function addRow() {
     const calendarIcon = logBody.querySelector('.fa-calendar-alt');
     calendarIcon.addEventListener('click', function() {
         dateInput.showPicker();
+    });
+
+    // New JavaScript for placeholder handling
+    dateInput.addEventListener('focus', () => {
+        dateInput.type = 'date';
+    });
+
+    dateInput.addEventListener('blur', () => {
+        if (dateInput.value === "") {
+            dateInput.type = 'text';
+            dateInput.placeholder = 'Date';
+        }
     });
 }
 

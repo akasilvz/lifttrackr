@@ -115,6 +115,14 @@ input[type="date"]::placeholder {
     font-family: 'Inter', sans-serif;
 }
 
+input[type="text"]:focus::placeholder,
+input[type="number"]:focus::placeholder,
+input[type="date"]:focus::placeholder,
+select:focus::placeholder {
+    color: #BBBBBB; 
+    opacity: 0.8;
+}
+
 .input-icon input,
 .input-icon select {
     color: #FFFFFF !important;

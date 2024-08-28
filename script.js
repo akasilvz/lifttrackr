@@ -50,10 +50,10 @@ function addRow() {
     flatpickr(dateInput, {
         dateFormat: "d/m/Y",
         allowInput: true,
-        onOpen: function(selectedDates, dateStr, instance) {
-            dateInput.placeholder = 'dd/mm/aaaa'; 
+        onOpen: function() {
+            dateInput.placeholder = 'dd/mm/yyyy'; 
         },
-        onClose: function(selectedDates, dateStr, instance) {
+        onClose: function() {
             if (!dateInput.value) {
                 dateInput.placeholder = 'Date';
             }
@@ -87,9 +87,6 @@ function formatDateInput(event) {
 
     if (value.length > 4) {
         let year = value.substring(4, 8);
-        if (year.length === 4 && parseInt(year) <= 2024) {
-            year = '2024';
-        }
         formattedValue += '/' + year;
     }
 
@@ -159,6 +156,7 @@ function updateReferenceTable() {
 function checkRowCompletion(inputs) {
     const validateBtn = document.querySelector('.validate-btn');
     const allFieldsFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+    const allFieldsEmpty = Array.from(inputs).every(input => input.value.trim() === '');
 
     if (allFieldsFilled) {
         validateBtn.disabled = false;
@@ -167,7 +165,14 @@ function checkRowCompletion(inputs) {
     } else {
         validateBtn.disabled = true;
         validateBtn.textContent = 'Incomplete Fields';
-        validateBtn.classList.add('incomplete'); 
+        validateBtn.classList.add('incomplete');
+
+        if (allFieldsEmpty) {
+            inputs.forEach(input => input.value = '');
+            document.getElementById('dateInput').placeholder = 'Date';
+            validateBtn.textContent = 'Submit';
+            validateBtn.classList.remove('incomplete');
+        }
     }
 }
 

@@ -4,7 +4,8 @@ let exerciseData = JSON.parse(localStorage.getItem('exerciseData')) || [];
 
 function populateExerciseOptions(selectElement, onlyRecorded = false) {
     const exercises = onlyRecorded ? [...new Set(exerciseData.map(entry => entry.exercise))] : weightliftingExercises;
-    selectElement.innerHTML = exercises.map(exercise => `<option value="${exercise}">${exercise.replace(/-/g, ' ')}</option>`).join('');
+    selectElement.innerHTML = `<option value="" disabled selected>Exercise</option>` + 
+        exercises.map(exercise => `<option value="${exercise}">${exercise.replace(/-/g, ' ')}</option>`).join('');
     selectElement.disabled = exercises.length === 0;
 }
 
@@ -53,51 +54,30 @@ function addRow() {
 
 function formatDateInput(event) {
     const input = event.target;
-    let value = input.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+    let value = input.value.replace(/\D/g, ''); 
     let formattedValue = '';
 
-    // Verifica se o campo está vazio e permite reset
     if (value.length === 0) {
         input.value = '';
         return;
     }
 
-    // Formatação condicional baseada na quantidade de dígitos inseridos
-    if (value.length <= 2) {
-        // Somente dia foi inserido
-        formattedValue = value;
-    } else if (value.length <= 4) {
-        // Dia e mês foram inseridos
+    if (value.length > 0) {
         let day = value.substring(0, 2);
-        let month = value.substring(2, 4);
-
-        // Limita valores máximos de dia e mês
         if (parseInt(day) > 31) day = '31';
-        if (parseInt(month) > 12) month = '12';
+        formattedValue = day;
+    }
 
-        formattedValue = day + '/' + month;
-    } else {
-        // Dia, mês e ano foram inseridos
-        let day = value.substring(0, 2);
+    if (value.length > 2) {
         let month = value.substring(2, 4);
+        if (parseInt(month) > 12) month = '12';
+        formattedValue += '/' + month;
+    }
+
+    // Adiciona o ano
+    if (value.length > 4) {
         let year = value.substring(4, 8);
-
-        // Limita valores máximos de dia e mês
-        if (parseInt(day) > 31) day = '31';
-        if (parseInt(month) > 12) month = '12';
-
-        // Verifica se a data está no futuro
-        const today = new Date();
-        const inputDate = new Date(`${year}-${month}-${day}`);
-
-        if (inputDate > today) {
-            const todayDay = String(today.getDate()).padStart(2, '0');
-            const todayMonth = String(today.getMonth() + 1).padStart(2, '0');
-            const todayYear = today.getFullYear();
-            formattedValue = `${todayDay}/${todayMonth}/${todayYear}`;
-        } else {
-            formattedValue = day + '/' + month + '/' + year;
-        }
+        formattedValue += '/' + year;
     }
 
     input.value = formattedValue;

@@ -65,6 +65,7 @@ th, td {
     height: 20px;
     line-height: 20px;
     vertical-align: middle;
+    width: 50%;
 }
 
 tfoot td {
@@ -77,6 +78,7 @@ tfoot td {
     height: 20px;
     line-height: 20px;
     vertical-align: middle;
+    width: 50%;
 }
 
 #customPercentageInput,
@@ -112,28 +114,6 @@ input[type="number"]::placeholder,
 select::placeholder {
     color: #dad2d2; 
     opacity: 1; 
-}
-
-/* Cross-browser compatibility for placeholders */
-input[type="date"]::-webkit-input-placeholder,
-input::-webkit-input-placeholder {
-    color: #dad2d2;
-}
-
-input[type="date"]::-moz-placeholder,
-input::-moz-placeholder {
-    color: #dad2d2;
-    opacity: 1;
-}
-
-input[type="date"]:-ms-input-placeholder,
-input:-ms-input-placeholder {
-    color: #dad2d2;
-}
-
-input[type="date"]::-ms-input-placeholder,
-input::-ms-input-placeholder {
-    color: #dad2d2;
 }
 
 .input-icon input,
@@ -342,8 +322,6 @@ footer a:hover {
     text-decoration: underline;
 }
 
-
-/* Ajustar altura dos inputs para consistência visual */
 .input-icon input,
 .input-icon select,
 #history-buttons button {

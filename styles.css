@@ -83,7 +83,8 @@ tfoot td {
 
 #customPercentageInput,
 input[type="number"],
-input[type="date"],
+input[type="text"],
+.flatpickr-input,
 select,
 .input-icon input,
 .input-icon select {
@@ -91,35 +92,27 @@ select,
     font-size: 1em;
     font-family: 'Inter', sans-serif;
     background-color: #313236;
-}
-
-#customPercentageInput {
-    font-family: 'Inter', sans-serif;
-    color: #FFFFFF !important;
-    background-color: #2E2E2E;
-    text-align: center;
-    height: 20px;
-    line-height: 20px;
-    padding: 0;
+    border: none;
+    outline: none;
+    padding: 12px;
     width: 100%;
     box-sizing: border-box;
-    border-radius: 0;
-    margin: 0;
-    display: block;
+    border-radius: 5px;
+    appearance: none;        
+    -webkit-appearance: none; 
+    -moz-appearance: none;  
 }
 
-/* Ajuste para Placeholder para Visibilidade em Todos os Navegadores */
 input::placeholder,
-input[type="date"]::placeholder,
 input[type="number"]::placeholder,
 select::placeholder {
-    color: #FFFFFF;  /* Força a cor branca para o placeholder */
-    opacity: 1;      /* Garante que o placeholder seja totalmente visível */
+    color: #FFFFFF;
+    opacity: 1;
 }
 
 .input-icon input,
 .input-icon select {
-    color: #FFFFFF !important; /* Força cor clara para o texto */
+    color: #FFFFFF !important;
     background-color: #393E46;
     font-family: 'Inter', sans-serif;
     border: none;
@@ -127,6 +120,17 @@ select::placeholder {
     padding: 12px;
     width: 100%;
     box-sizing: border-box;
+}
+
+#customPercentageInput {
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+    display: block;
+    color: #FFFFFF !important;
+    background-color: #2E2E2E;
 }
 
 #customPercentageInput:focus {
@@ -316,10 +320,4 @@ footer a:hover {
     font-size: 1em; 
     line-height: 1.5;
     box-sizing: border-box; 
-}
-
-input[type="date"] {
-    height: 40px; 
-    padding: 0 12px;
-    box-sizing: border-box;
 }

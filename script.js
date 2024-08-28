@@ -51,10 +51,12 @@ function addRow() {
         dateFormat: "d/m/Y",
         allowInput: true,
         onOpen: function(selectedDates, dateStr, instance) {
-            dateInput.placeholder = 'dd/mm/aaaa';
+            dateInput.placeholder = 'dd/mm/aaaa'; 
         },
         onClose: function(selectedDates, dateStr, instance) {
-            dateInput.placeholder = 'Date';
+            if (!dateInput.value) {
+                dateInput.placeholder = 'Date';
+            }
         }
     });
 

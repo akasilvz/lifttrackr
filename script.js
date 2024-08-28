@@ -12,12 +12,20 @@ function populateExerciseOptions(selectElement, onlyRecorded = false) {
 function addRow() {
     const logBody = document.getElementById('log-body');
     logBody.innerHTML = `
-        <div class="input-group">
-            <div class="input-icon">
-                <i class="fas fa-calendar-alt"></i>
-                <input type="text" id="dateInput" placeholder="Date" maxlength="10" required>
-            </div>
-        </div>
+<div class="input-group">
+    <div class="input-icon">
+        <i class="fas fa-calendar-alt"></i>
+        <input
+            type="text"
+            id="dateInput"
+            placeholder="Date"
+            maxlength="10"
+            required
+            onfocus="(this.type='date')"
+            onblur="(this.type='text')"
+        >
+    </div>
+</div>
         <div class="input-group">
             <div class="input-icon">
                 <i class="fas fa-dumbbell"></i>
@@ -46,20 +54,24 @@ function addRow() {
 
     logBody.querySelector('.validate-btn').addEventListener('click', validateRow);
 
-    const dateInput = logBody.querySelector('#dateInput');
+    const dateInput = document.getElementById('dateInput');
+
+    // Inicializar flatpickr no input de data
     flatpickr(dateInput, {
         dateFormat: "d/m/Y",
         allowInput: true,
-        onOpen: function(selectedDates, dateStr, instance) {
-            dateInput.placeholder = 'dd/mm/aaaa'; 
+        onOpen: function() {
+            dateInput.type = 'date'; // Mudar para tipo 'date' ao abrir
         },
-        onClose: function(selectedDates, dateStr, instance) {
+        onClose: function() {
+            dateInput.type = 'text'; // Voltar para tipo 'text' ao fechar
             if (!dateInput.value) {
-                dateInput.placeholder = 'Date';
+                dateInput.placeholder = 'Date'; // Restaurar placeholder se vazio
             }
         }
     });
-
+    
+    // Listener para formatação manual do input de data
     dateInput.addEventListener('input', formatDateInput);
 }
 

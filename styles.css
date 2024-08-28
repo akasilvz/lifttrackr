@@ -84,6 +84,7 @@ tfoot td {
 #customPercentageInput,
 input[type="number"],
 input[type="text"],
+input[type="date"],
 .flatpickr-input,
 select,
 .input-icon input,
@@ -106,6 +107,12 @@ select,
 ::placeholder {
     color: #FFFFFF;
     opacity: 1;
+}
+
+input[type="date"]::placeholder {
+    color: #FFFFFF; 
+    opacity: 1;    
+    font-family: 'Inter', sans-serif;
 }
 
 .input-icon input,

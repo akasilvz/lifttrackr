@@ -334,24 +334,3 @@ footer a:hover {
     line-height: 1.5;
     box-sizing: border-box; 
 }
-
-input[type="date"] {
-    color: #EEEEEE;
-    font-size: 1em;
-    font-family: 'Inter', sans-serif;
-    background-color: #313236;
-    border: none;
-    outline: none;
-    padding: 12px;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 5px;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-input[type="date"]:focus {
-    color: #FFFFFF;
-    background-color: #393E46;
-}

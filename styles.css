@@ -108,17 +108,18 @@ select,
     display: block;
 }
 
+/* Ajuste para Placeholder para Visibilidade em Todos os Navegadores */
 input::placeholder,
 input[type="date"]::placeholder,
 input[type="number"]::placeholder,
 select::placeholder {
-    color: #dad2d2; 
-    opacity: 1; 
+    color: #FFFFFF;  /* Força a cor branca para o placeholder */
+    opacity: 1;      /* Garante que o placeholder seja totalmente visível */
 }
 
 .input-icon input,
 .input-icon select {
-    color: #dad2d2 !important; 
+    color: #FFFFFF !important; /* Força cor clara para o texto */
     background-color: #393E46;
     font-family: 'Inter', sans-serif;
     border: none;
@@ -192,21 +193,6 @@ tfoot input {
     text-align: center;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-}
-
-.input-icon input,
-.input-icon select {
-    border: none;
-    outline: none;
-    width: 100%;
-    padding: 12px;
-    background-color: #393E46;
-    color: #EEEEEE;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 1em;
-    appearance: none;
-    font-family: 'Inter', sans-serif;
 }
 
 .validate-btn,
@@ -337,4 +323,3 @@ input[type="date"] {
     padding: 0 12px;
     box-sizing: border-box;
 }
-

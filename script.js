@@ -47,8 +47,17 @@ function addRow() {
     logBody.querySelector('.validate-btn').addEventListener('click', validateRow);
 
     const dateInput = logBody.querySelector('#dateInput');
-    dateInput.addEventListener('focus', () => { dateInput.placeholder = 'dd/mm/aaaa'; });
-    dateInput.addEventListener('blur', () => { if (!dateInput.value) dateInput.placeholder = 'Date'; });
+    flatpickr(dateInput, {
+        dateFormat: "d/m/Y",
+        allowInput: true,
+        onOpen: function(selectedDates, dateStr, instance) {
+            dateInput.placeholder = 'dd/mm/aaaa';
+        },
+        onClose: function(selectedDates, dateStr, instance) {
+            dateInput.placeholder = 'Date';
+        }
+    });
+
     dateInput.addEventListener('input', formatDateInput);
 }
 
@@ -74,9 +83,11 @@ function formatDateInput(event) {
         formattedValue += '/' + month;
     }
 
-    // Adiciona o ano
     if (value.length > 4) {
         let year = value.substring(4, 8);
+        if (year.length === 4 && parseInt(year) <= 2024) {
+            year = '2024';
+        }
         formattedValue += '/' + year;
     }
 
@@ -107,7 +118,7 @@ function validateRow() {
 function updateHistoryTable() {
     const historyContainer = document.getElementById('history-container');
     historyContainer.innerHTML = exerciseData.length === 0 ? 
-        '<p style="text-align: center; color: #f0f0f0;">No data to show... 😔</p>' :
+        '<p style="text-align: center; color: #f0f0f0;">No data to show.</p>' :
         `
             <h2>📜 Personal Record History</h2>
             <table class="history-table">
@@ -145,7 +156,17 @@ function updateReferenceTable() {
 
 function checkRowCompletion(inputs) {
     const validateBtn = document.querySelector('.validate-btn');
-    validateBtn.disabled = !Array.from(inputs).every(input => input.value);
+    const allFieldsFilled = Array.from(inputs).every(input => input.value.trim() !== '');
+
+    if (allFieldsFilled) {
+        validateBtn.disabled = false;
+        validateBtn.textContent = 'Ready to Submit'; 
+        validateBtn.classList.remove('incomplete'); 
+    } else {
+        validateBtn.disabled = true;
+        validateBtn.textContent = 'Incomplete Fields';
+        validateBtn.classList.add('incomplete'); 
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

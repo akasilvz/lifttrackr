@@ -103,9 +103,7 @@ select,
     -moz-appearance: none;  
 }
 
-input::placeholder,
-input[type="number"]::placeholder,
-select::placeholder {
+::placeholder {
     color: #FFFFFF;
     opacity: 1;
 }

@@ -15,7 +15,7 @@ function addRow() {
         <div class="input-group">
             <div class="input-icon">
                 <i class="fas fa-calendar-alt"></i>
-                <input type="text" id="dateInput" placeholder="Date" maxlength="10" required onfocus="this.type='date'" onblur="this.type='text'">
+                <input type="text" id="dateInput" placeholder="Date" maxlength="10" required>
             </div>
         </div>
         <div class="input-group">

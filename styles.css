@@ -70,6 +70,19 @@ tfoot td {
     width: 50%;
 }
 
+.history-table th,
+.history-table td {
+    width: 33.33%;
+    padding: 8px;
+    text-align: center;
+    background-color: #393E46;
+    color: #EEEEEE;
+    border: 1px solid #222831;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
 #customPercentageInput {
     width: 100%;
     text-align: center;
@@ -84,6 +97,7 @@ tfoot td {
     font-size: 1em;
     font-family: 'Inter', sans-serif;
 }
+
 input,
 select,
 .input-icon input,
@@ -106,13 +120,25 @@ select,
 }
 
 input:focus::placeholder,
-select:focus::placeholder {
-    color: #BBBBBB; 
+select:focus::placeholder,
+input:focus + .date-placeholder,
+select:focus + .date-placeholder {
+    color: #BBBBBB;
     opacity: 0.8;
 }
 
 .input-icon input,
 .input-icon select {
+    background-color: #393E46;
+}
+
+.date-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #555;
+    border-radius: 5px;
     background-color: #393E46;
 }
 
@@ -123,7 +149,8 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-    -moz-appearance: textfield;
+    appearance: textfield;
+    -webkit-appearance: none; 
 }
 
 tfoot input {
@@ -231,4 +258,16 @@ footer a:hover {
     font-size: 1em; 
     line-height: 1.5;
     box-sizing: border-box; 
+}
+
+.date-placeholder {
+    color: #FFFFFF;
+    opacity: 1;
+    position: absolute;
+    pointer-events: none;
+    left: 75px; 
+    top: 12px;  
+    font-size: 1em;
+    transition: opacity 0.3s;
+    display: block; 
 }

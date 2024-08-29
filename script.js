@@ -1,10 +1,11 @@
 import weightliftingExercises from './exercises.js';
 
 let exerciseData = JSON.parse(localStorage.getItem('exerciseData')) || [];
+let customPercentageValue = 0;
 
 function populateExerciseOptions(selectElement, onlyRecorded = false) {
     const exercises = onlyRecorded ? [...new Set(exerciseData.map(entry => entry.exercise))] : weightliftingExercises;
-    selectElement.innerHTML = `<option value="" disabled selected>Exercise</option>` + 
+    selectElement.innerHTML = `<option value="" disabled selected>Exercise</option>` +
         exercises.map(exercise => `<option value="${exercise}">${exercise.replace(/-/g, ' ')}</option>`).join('');
     selectElement.disabled = exercises.length === 0;
 }
@@ -51,6 +52,7 @@ function addRow() {
     flatpickr(dateInput, {
         dateFormat: "d/m/Y",
         allowInput: true,
+        maxDate: "today",
         onOpen: function() {
             toggleDatePlaceholder(dateInput, false);
         },
@@ -83,7 +85,7 @@ function toggleDatePlaceholder(input, show) {
 
 function formatDateInput(event) {
     const input = event.target;
-    let value = input.value.replace(/\D/g, ''); 
+    let value = input.value.replace(/\D/g, '');
     let formattedValue = '';
 
     if (value.length === 0) {
@@ -134,7 +136,7 @@ function validateRow() {
 
 function updateHistoryTable() {
     const historyContainer = document.getElementById('history-container');
-    historyContainer.innerHTML = exerciseData.length === 0 ? 
+    historyContainer.innerHTML = exerciseData.length === 0 ?
         '<p style="text-align: center; color: #f0f0f0;">No data to show.</p>' :
         `
             <h2>📜 Personal Record History</h2>
@@ -152,6 +154,26 @@ function updateHistoryTable() {
     populateExerciseOptions(document.getElementById('exerciseSelect'), true);
 }
 
+function setupCustomPercentageInput() {
+    const customPercentageInput = document.getElementById('customPercentageInput');
+    customPercentageInput.addEventListener('input', () => {
+        customPercentageValue = parseFloat(customPercentageInput.value) || 0;
+        calculateCustomWeight();
+    });
+}
+
+function calculateCustomWeight() {
+    const customWeightOutput = document.getElementById('customWeightOutput');
+    const exercise = document.getElementById('exerciseSelect').value;
+    const maxWeight = Math.max(...exerciseData.filter(entry => entry.exercise === exercise).map(entry => entry.weight), 0);
+
+    if (customPercentageValue > 0 && customPercentageValue <= 100 && maxWeight > 0) {
+        customWeightOutput.textContent = `${(maxWeight * (customPercentageValue / 100)).toFixed(1)} kg`;
+    } else {
+        customWeightOutput.textContent = '-';
+    }
+}
+
 function updateReferenceTable() {
     const exercise = document.getElementById('exerciseSelect').value;
     const maxWeight = Math.max(...exerciseData.filter(entry => entry.exercise === exercise).map(entry => entry.weight), 0);
@@ -161,14 +183,7 @@ function updateReferenceTable() {
         return `<tr><td>${percentage}</td><td>${(maxWeight * (percentage / 100)).toFixed(1)} kg</td></tr>`;
     }).join('');
 
-    const customPercentageInput = document.getElementById('customPercentageInput');
-    const customWeightOutput = document.getElementById('customWeightOutput');
-    customPercentageInput.addEventListener('input', () => {
-        const customPercentage = customPercentageInput.value;
-        customWeightOutput.textContent = customPercentage > 0 && customPercentage <= 100 
-            ? `${(maxWeight * (customPercentage / 100)).toFixed(1)} kg` 
-            : '-';
-    });
+    calculateCustomWeight(); 
 }
 
 function checkRowCompletion(inputs) {
@@ -178,8 +193,8 @@ function checkRowCompletion(inputs) {
 
     if (allFieldsFilled) {
         validateBtn.disabled = false;
-        validateBtn.textContent = 'Ready to Submit'; 
-        validateBtn.classList.remove('incomplete'); 
+        validateBtn.textContent = 'Ready to Submit';
+        validateBtn.classList.remove('incomplete');
     } else {
         validateBtn.disabled = true;
         validateBtn.textContent = 'Incomplete Fields';
@@ -199,6 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addRow();
     updateHistoryTable();
     updateReferenceTable();
+    setupCustomPercentageInput(); // Nova função chamada
     document.getElementById('exerciseSelect').addEventListener('change', updateReferenceTable);
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

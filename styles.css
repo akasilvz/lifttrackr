@@ -98,6 +98,7 @@ tfoot td {
     font-family: 'Inter', sans-serif;
 }
 
+/* Estilo para todos os campos de entrada */
 input,
 select,
 .input-icon input,
@@ -114,24 +115,25 @@ select,
     appearance: none;
 }
 
+/* Placeholder uniforme para todos os campos de entrada */
 ::placeholder {
-    color: #FFFFFF;
+    color: #BBBBBB;
     opacity: 1;
 }
 
 input:focus::placeholder,
-select:focus::placeholder,
-input:focus + .date-placeholder,
-select:focus + .date-placeholder {
+select:focus::placeholder {
     color: #BBBBBB;
     opacity: 0.8;
 }
 
+/* Estilo específico para entradas com ícones */
 .input-icon input,
 .input-icon select {
     background-color: #393E46;
 }
 
+/* Estilo para o container de data */
 .date-input-container {
     position: relative;
     display: flex;
@@ -258,23 +260,4 @@ footer a:hover {
     font-size: 1em; 
     line-height: 1.5;
     box-sizing: border-box; 
-}
-
-.date-placeholder {
-    color: #FFFFFF;
-    opacity: 1;
-    position: absolute;
-    pointer-events: none;
-    left: 75px; 
-    top: 12px;  
-    font-size: 1em;
-    transition: opacity 0.3s;
-    display: block; 
-}
-
-.date-input-container input {
-    padding-left: 12px; 
-    height: 40px; 
-    line-height: 1.5;
-    box-sizing: border-box;
 }

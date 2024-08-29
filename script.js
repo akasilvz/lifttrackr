@@ -13,9 +13,10 @@ function addRow() {
     const logBody = document.getElementById('log-body');
     logBody.innerHTML = `
         <div class="input-group">
-            <div class="input-icon">
+            <div class="input-icon date-input-container">
                 <i class="fas fa-calendar-alt"></i>
-                <input type="text" id="dateInput" placeholder="Date" maxlength="10" required>
+                <input type="text" id="dateInput" maxlength="10" required>
+                <span class="date-placeholder">Date</span>
             </div>
         </div>
         <div class="input-group">
@@ -51,16 +52,33 @@ function addRow() {
         dateFormat: "d/m/Y",
         allowInput: true,
         onOpen: function() {
-            dateInput.placeholder = 'dd/mm/yyyy'; 
+            toggleDatePlaceholder(dateInput, false);
         },
         onClose: function() {
-            if (!dateInput.value) {
-                dateInput.placeholder = 'Date';
-            }
+            toggleDatePlaceholder(dateInput, true);
+        },
+        onChange: function(selectedDates, dateStr) {
+            dateInput.value = dateStr;
+            toggleDatePlaceholder(dateInput, true);
+            checkRowCompletion(inputs);
         }
     });
 
-    dateInput.addEventListener('input', formatDateInput);
+    dateInput.addEventListener('input', (event) => {
+        formatDateInput(event);
+        toggleDatePlaceholder(dateInput, true);
+    });
+    dateInput.addEventListener('focus', () => toggleDatePlaceholder(dateInput, false));
+    dateInput.addEventListener('blur', () => toggleDatePlaceholder(dateInput, true));
+}
+
+function toggleDatePlaceholder(input, show) {
+    const placeholder = input.parentNode.querySelector('.date-placeholder');
+    if (show && !input.value) {
+        placeholder.style.display = 'block';
+    } else {
+        placeholder.style.display = 'none';
+    }
 }
 
 function formatDateInput(event) {
@@ -137,7 +155,7 @@ function updateHistoryTable() {
 function updateReferenceTable() {
     const exercise = document.getElementById('exerciseSelect').value;
     const maxWeight = Math.max(...exerciseData.filter(entry => entry.exercise === exercise).map(entry => entry.weight), 0);
-    
+
     document.getElementById('referencePercentages').innerHTML = Array.from({length: 10}, (_, i) => {
         const percentage = (i + 1) * 10;
         return `<tr><td>${percentage}</td><td>${(maxWeight * (percentage / 100)).toFixed(1)} kg</td></tr>`;

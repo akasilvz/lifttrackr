@@ -271,3 +271,10 @@ footer a:hover {
     transition: opacity 0.3s;
     display: block; 
 }
+
+.date-input-container input {
+    padding-left: 12px; 
+    height: 40px; 
+    line-height: 1.5;
+    box-sizing: border-box;
+}

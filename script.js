@@ -16,8 +16,8 @@ function addRow() {
         <div class="input-group">
             <div class="input-icon date-input-container">
                 <i class="fas fa-calendar-alt"></i>
-                <input type="text" id="dateInput" maxlength="10" required>
-                <span class="date-placeholder">Date</span>
+                <input type="text" id="dateInput" maxlength="10" required placeholder="Date"> <!-- Placeholder inicial -->
+                <!-- Removi o span do placeholder -->
             </div>
         </div>
         <div class="input-group">
@@ -52,35 +52,30 @@ function addRow() {
     flatpickr(dateInput, {
         dateFormat: "d/m/Y",
         allowInput: true,
-        maxDate: "today",
+        maxDate: "today",  
         onOpen: function() {
-            toggleDatePlaceholder(dateInput, false);
+            dateInput.placeholder = 'dd/mm/aaaa'; 
         },
         onClose: function() {
-            toggleDatePlaceholder(dateInput, true);
+            if (dateInput.value === '') {
+                dateInput.placeholder = 'Date';
+            }
         },
         onChange: function(selectedDates, dateStr) {
             dateInput.value = dateStr;
-            toggleDatePlaceholder(dateInput, true);
             checkRowCompletion(inputs);
         }
     });
 
-    dateInput.addEventListener('input', (event) => {
-        formatDateInput(event);
-        toggleDatePlaceholder(dateInput, true);
+    dateInput.addEventListener('focus', () => {
+        dateInput.placeholder = 'dd/mm/aaaa'; 
     });
-    dateInput.addEventListener('focus', () => toggleDatePlaceholder(dateInput, false));
-    dateInput.addEventListener('blur', () => toggleDatePlaceholder(dateInput, true));
-}
 
-function toggleDatePlaceholder(input, show) {
-    const placeholder = input.parentNode.querySelector('.date-placeholder');
-    if (show && !input.value) {
-        placeholder.style.display = 'block';
-    } else {
-        placeholder.style.display = 'none';
-    }
+    dateInput.addEventListener('blur', () => {
+        if (dateInput.value === '') {
+            dateInput.placeholder = 'Date'; 
+        }
+    });
 }
 
 function formatDateInput(event) {

@@ -13,9 +13,10 @@ function addRow() {
     const logBody = document.getElementById('log-body');
     logBody.innerHTML = `
         <div class="input-group">
-            <div class="input-icon">
+            <div class="input-icon date-input-container">
                 <i class="fas fa-calendar-alt"></i>
-                <input type="text" id="dateInput" placeholder="Date" maxlength="10" required>
+                <input type="text" id="dateInput" maxlength="10" required>
+                <span class="date-placeholder">Date</span>
             </div>
         </div>
         <div class="input-group">
@@ -50,15 +51,34 @@ function addRow() {
     flatpickr(dateInput, {
         dateFormat: "d/m/Y",
         allowInput: true,
+        onOpen: function() {
+            toggleDatePlaceholder(dateInput, false);
+        },
+        onClose: function() {
+            toggleDatePlaceholder(dateInput, true);
+        },
         onChange: function(selectedDates, dateStr) {
             dateInput.value = dateStr;
+            toggleDatePlaceholder(dateInput, true);
             checkRowCompletion(inputs);
         }
     });
 
     dateInput.addEventListener('input', (event) => {
         formatDateInput(event);
+        toggleDatePlaceholder(dateInput, true);
     });
+    dateInput.addEventListener('focus', () => toggleDatePlaceholder(dateInput, false));
+    dateInput.addEventListener('blur', () => toggleDatePlaceholder(dateInput, true));
+}
+
+function toggleDatePlaceholder(input, show) {
+    const placeholder = input.parentNode.querySelector('.date-placeholder');
+    if (show && !input.value) {
+        placeholder.style.display = 'block';
+    } else {
+        placeholder.style.display = 'none';
+    }
 }
 
 function formatDateInput(event) {

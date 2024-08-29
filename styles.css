@@ -11,7 +11,6 @@ body {
 }
 
 h1, h2 {
-    font-family: 'Inter', sans-serif;
     color: #EEEEEE;
     text-align: left;
     margin: 15px 0 25px;
@@ -24,13 +23,11 @@ h1, h2 {
 #history-buttons {
     width: auto; 
     max-width: 550px; 
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 20px;
     background-color: #393E46;
     border-radius: 8px;
     padding: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
 }
 
 #history-buttons {
@@ -38,13 +35,7 @@ h1, h2 {
     justify-content: space-between; 
     gap: 10px; 
     margin-top: 10px;
-    background-color: #393E46;
-    border-radius: 8px;
     flex-wrap: nowrap; 
-    width: auto; 
-    max-width: 550px;
-    margin-left: auto; 
-    margin-right: auto; 
 }
 
 table {
@@ -56,7 +47,6 @@ table {
 }
 
 th, td {
-    font-family: 'Inter', sans-serif;
     padding: 8px;
     text-align: center;
     background-color: #393E46;
@@ -69,10 +59,9 @@ th, td {
 }
 
 tfoot td {
-    font-family: 'Inter', sans-serif;
+    background-color: #2E2E2E;
     padding: 8px;
     text-align: center;
-    background-color: #2E2E2E;
     color: #EEEEEE;
     border: 1px solid #222831;
     height: 20px;
@@ -81,17 +70,26 @@ tfoot td {
     width: 50%;
 }
 
-#customPercentageInput,
-input[type="number"],
-input[type="text"],
-input[type="date"],
-.flatpickr-input,
+#customPercentageInput {
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    padding: 0;
+    margin: 0;
+    display: block;
+    color: #EEEEEE;
+    background-color: #2E2E2E;
+    border: none;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
+}
+input,
 select,
 .input-icon input,
 .input-icon select {
     color: #EEEEEE;
     font-size: 1em;
-    font-family: 'Inter', sans-serif;
     background-color: #313236;
     border: none;
     outline: none;
@@ -99,9 +97,7 @@ select,
     width: 100%;
     box-sizing: border-box;
     border-radius: 5px;
-    appearance: none;        
-    -webkit-appearance: none; 
-    -moz-appearance: none;  
+    appearance: none;
 }
 
 ::placeholder {
@@ -109,15 +105,7 @@ select,
     opacity: 1;
 }
 
-input[type="date"]::placeholder {
-    color: #FFFFFF; 
-    opacity: 1;    
-    font-family: 'Inter', sans-serif;
-}
-
-input[type="text"]:focus::placeholder,
-input[type="number"]:focus::placeholder,
-input[type="date"]:focus::placeholder,
+input:focus::placeholder,
 select:focus::placeholder {
     color: #BBBBBB; 
     opacity: 0.8;
@@ -125,69 +113,28 @@ select:focus::placeholder {
 
 .input-icon input,
 .input-icon select {
-    color: #FFFFFF !important;
     background-color: #393E46;
-    font-family: 'Inter', sans-serif;
-    border: none;
-    outline: none;
-    padding: 12px;
-    width: 100%;
-    box-sizing: border-box;
 }
 
-#customPercentageInput {
-    text-align: center;
-    height: 20px;
-    line-height: 20px;
-    padding: 0;
-    margin: 0;
-    display: block;
-    color: #FFFFFF !important;
-    background-color: #2E2E2E;
-}
-
-#customPercentageInput:focus {
-    color: #FFFFFF !important;
-}
-
-#customPercentageInput::-webkit-outer-spin-button,
-#customPercentageInput::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
 
-#customPercentageInput[type=number],
-input[type="date"],
 input[type="number"] {
-    appearance: textfield;
     -moz-appearance: textfield;
 }
 
 tfoot input {
     width: 50%;
     background-color: #393E46;
-    color: #EEEEEE;
     border: none;
     text-align: center;
     outline: none;
     height: 20px;
     line-height: 20px;
     vertical-align: middle;
-}
-
-.log-table input,
-.log-table select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    background-color: #333333;
-    color: #EEEEEE;
-    border: 1px solid #555;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-size: 1em;
 }
 
 .input-group {
@@ -215,7 +162,6 @@ tfoot input {
 
 .validate-btn,
 #history-buttons button {
-    font-family: 'Inter', sans-serif;
     font-size: 1em;
     cursor: pointer;
     background-color: #FD7014;
@@ -223,27 +169,17 @@ tfoot input {
     padding: 12px;
     color: #EEEEEE;
     border-radius: 5px;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease;
     width: 100%;
     text-align: center;
 }
 
 .validate-btn.incomplete {
     background-color: #d32f2f;
-    color: #ffffff;
 }
 
 #history-buttons button {
     flex: 1;
-    font-size: 1em;
-    cursor: pointer;
-    background-color: #FD7014;
-    border: none;
-    padding: 12px;
-    color: #EEEEEE;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
 }
 
 #history-buttons button#delete-last-record-btn,
@@ -269,46 +205,7 @@ tfoot input {
     background-color: #FF8C42;
 }
 
-.reference-table-container .input-icon {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    border: 1px solid #555;
-    border-radius: 5px;
-    background-color: #393E46;
-}
-
-.reference-table-container .input-icon i {
-    padding: 12px;
-    background: #393E46;
-    color: white;
-    min-width: 40px;
-    text-align: center;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.reference-table-container .input-icon select {
-    border: none;
-    outline: none;
-    width: 100%;
-    padding: 12px;
-    background-color: #393E46;
-    color: #EEEEEE;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: none;
-}
-
-select::-ms-expand {
-    display: none;
-}
-
 footer {
-    font-family: 'Inter', sans-serif;
     color: #EEEEEE;
     text-align: center;
     padding: 10px;
